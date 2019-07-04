@@ -341,6 +341,9 @@ func (f *Format) compile(s string) error {
 		case 'b':
 			cbs = append(cbs, responseContentLength)
 			start = i + n - 1
+		case 'N':
+			cbs = append(cbs, fixedByteSequence([]byte(f.serviceName)))
+			start = i + n - 1
 		case 'D': // custom
 			cbs = append(cbs, elapsedTimeMicroSeconds)
 			start = i + n - 1

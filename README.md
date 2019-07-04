@@ -1,11 +1,11 @@
 apache-logformat
 ===================
 
-[![Build Status](https://travis-ci.org/lestrrat-go/apache-logformat.png?branch=master)](https://travis-ci.org/lestrrat-go/apache-logformat)
+[![Build Status](https://travis-ci.org/charlysan/apache-logformat.png?branch=master)](https://travis-ci.org/charlysan/apache-logformat)
 
-[![GoDoc](https://godoc.org/github.com/lestrrat-go/apache-logformat?status.svg)](https://godoc.org/github.com/lestrrat-go/apache-logformat)
+[![GoDoc](https://godoc.org/github.com/charlysan/apache-logformat?status.svg)](https://godoc.org/github.com/charlysan/apache-logformat)
 
-[![Coverage Status](https://coveralls.io/repos/lestrrat-go/apache-logformat/badge.png?branch=topic%2Fgoveralls)](https://coveralls.io/r/lestrrat-go/apache-logformat?branch=topic%2Fgoveralls)
+[![Coverage Status](https://coveralls.io/repos/charlysan/apache-logformat/badge.png?branch=topic%2Fgoveralls)](https://coveralls.io/r/charlysan/apache-logformat?branch=topic%2Fgoveralls)
 
 # SYNOPSYS
 
@@ -14,7 +14,7 @@ import (
   "net/http"
   "os"
 
-  "github.com/lestrrat-go/apache-logformat"
+  "github.com/charlysan/apache-logformat"
 )
 
 func main() {

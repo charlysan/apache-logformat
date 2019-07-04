@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
+	apachelog "github.com/charlysan/apache-logformat"
+	"github.com/charlysan/apache-logformat/internal/logctx"
 	"github.com/facebookgo/clock"
-	"github.com/lestrrat-go/apache-logformat"
-	"github.com/lestrrat-go/apache-logformat/internal/logctx"
 	strftime "github.com/lestrrat-go/strftime"
 	"github.com/stretchr/testify/assert"
 )
@@ -51,7 +51,7 @@ func newServer(l *apachelog.ApacheLog, h http.Handler, out io.Writer) *httptest.
 }
 
 func testLog(t *testing.T, pattern, expected string, h http.Handler, modifyURL func(string) string, modifyRequest func(*http.Request)) {
-	l, err := apachelog.New(pattern)
+	l, err := apachelog.New(pattern, nil)
 	if !assert.NoError(t, err, "apachelog.New should succeed") {
 		return
 	}
@@ -237,7 +237,7 @@ func TestFixedSequence(t *testing.T) {
 }
 
 func TestFull(t *testing.T) {
-	l, err := apachelog.New(`hello, %% %b %D %h %H %l %m %p %q %r %s %t %T %u %U %v %V %>s %{X-LogFormat-Test}i %{X-LogFormat-Test}o world!`)
+	l, err := apachelog.New(`hello, %% %b %D %h %H %l %m %p %q %r %s %t %T %u %U %v %V %>s %{X-LogFormat-Test}i %{X-LogFormat-Test}o world!`, nil)
 	if !assert.NoError(t, err, "apachelog.New should succeed") {
 		return
 	}
@@ -288,7 +288,7 @@ func TestIPv6RemoteAddr(t *testing.T) {
 	format := `%h`
 	expected := "[::1]\n"
 
-	al, err := apachelog.New(format)
+	al, err := apachelog.New(format, nil)
 	if !assert.NoError(t, err, "apachelog.New should succeed") {
 		return
 	}

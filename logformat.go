@@ -5,18 +5,26 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/lestrrat-go/apache-logformat/internal/httputil"
-	"github.com/lestrrat-go/apache-logformat/internal/logctx"
+	"github.com/charlysan/apache-logformat/internal/httputil"
+	"github.com/charlysan/apache-logformat/internal/logctx"
 	"github.com/pkg/errors"
 )
 
 // New creates a new ApacheLog instance from the given
 // format. It will return an error if the format fails to compile.
-func New(format string) (*ApacheLog, error) {
+func New(format string, serviceName *string) (*ApacheLog, error) {
 	var f Format
 	if err := f.compile(format); err != nil {
 		return nil, errors.Wrap(err, "failed to compile log format")
 	}
+
+	sName := "-"
+
+	if serviceName != nil {
+		sName = *serviceName
+	}
+
+	f.serviceName = sName
 
 	return &ApacheLog{format: &f}, nil
 }
